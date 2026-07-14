@@ -1,0 +1,92 @@
+.services-container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 60px 24px 72px;
+  color: var(--text);
+}
+
+.services-container h2 {
+  text-align: center;
+  color: var(--heading);
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.services-container h3 {
+  color: var(--heading);
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-top: 18px;
+  margin-bottom: 6px;
+}
+
+.services-container p {
+  margin: 4px 0 10px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* Services grid */
+.services-container > article > ul {
+  list-style: none;
+  padding: 0;
+  margin: 28px 0 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.services-container > article > ul li {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  color: var(--text);
+  font-weight: 500;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+}
+.services-container > article > ul li i { color: var(--gold) !important; }
+
+/* Service areas + designations cards */
+.services-container section article {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 24px 28px;
+  box-shadow: var(--card-shadow);
+}
+
+hr {
+  border: none;
+  border-top: 2px solid var(--border);
+  margin: 44px 0;
+}
+
+.btn.btn-primary,
+.btn-primary {
+  background-color: #b31942 !important;
+  border-color: #b31942 !important;
+  color: #ffffff !important;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  padding: 14px 40px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(179, 25, 66, 0.35);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.btn.btn-primary:hover,
+.btn-primary:hover {
+  background-color: #8f1436 !important;
+  border-color: #8f1436 !important;
+  color: #fff !important;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .services-container { padding: 40px 18px 56px; }
+  .services-container > article > ul { grid-template-columns: 1fr; }
+  .services-container section article { padding: 18px 18px; }
+}

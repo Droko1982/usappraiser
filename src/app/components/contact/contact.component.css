@@ -1,0 +1,110 @@
+:host {
+  display: block;
+  padding: 56px 20px 72px;
+}
+
+.card {
+  background: var(--card) !important;
+  border: none !important;
+  border-radius: 16px !important;
+  box-shadow: var(--card-shadow) !important;
+  overflow: hidden;
+}
+
+.card-header {
+  background: linear-gradient(135deg, #0a3161 0%, #2456a6 100%) !important;
+  border: none !important;
+  padding: 26px 20px !important;
+}
+.card-header h2 {
+  color: #ffffff !important;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.card-body { background: var(--card); }
+.card-body .text-muted { color: var(--muted) !important; }
+
+.col-form-label {
+  font-weight: 600;
+  color: var(--heading);
+}
+
+.form-control,
+.form-select {
+  border-radius: 9px;
+  border: 1.5px solid var(--border);
+  background-color: var(--input-bg);
+  color: var(--text);
+  padding: 10px 14px;
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--navy-light);
+  background-color: var(--input-bg);
+  color: var(--text);
+  box-shadow: 0 0 0 3px rgba(27, 90, 151, 0.15);
+}
+.form-select option { color: var(--text); background: var(--input-bg); }
+
+input::placeholder,
+textarea::placeholder { color: var(--muted); opacity: 0.8; }
+
+.wa-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 26px;
+  background-color: #25d366;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 9px;
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.3);
+  transition: transform .2s ease, background-color .2s ease;
+}
+.wa-inline i { font-size: 1.25rem; }
+.wa-inline:hover {
+  background-color: #1eb857;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.btn-primary {
+  display: inline-block;
+  background-color: #b31942 !important;
+  color: #ffffff !important;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 13px 46px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(179, 25, 66, 0.35);
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}
+.btn-primary:hover {
+  background-color: #8f1436 !important;
+  color: #fff !important;
+  transform: translateY(-2px);
+}
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@media (max-width: 768px) {
+  :host { padding: 36px 14px 56px; }
+}

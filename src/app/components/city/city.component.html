@@ -1,0 +1,66 @@
+<section class="city-hero">
+  <div class="city-hero-inner">
+    <h1>{{ heading() }}</h1>
+    <p>{{ subhead() }}</p>
+    <div class="city-actions">
+      <a routerLink="/contact" class="c-btn c-btn-gold">{{ L.t('hero_cta') }}</a>
+      <a [href]="L.whatsappUrl()" target="_blank" rel="noopener" class="c-btn c-btn-wa">
+        <i class="fab fa-whatsapp"></i> {{ L.t('wa_btn') }}
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="city-body">
+  <article class="city-card">
+    <p class="lead">{{ intro() }}</p>
+    <p class="muted">{{ blurb() }}</p>
+  </article>
+
+  <section class="city-block">
+    <h2>{{ servicesTitle() }}</h2>
+    <ul class="city-services">
+      @for (s of services(); track s) {
+      <li><i class="fa-solid fa-circle-check"></i> {{ s }}</li>
+      }
+    </ul>
+  </section>
+
+  <section class="city-block">
+    <h2>{{ whyTitle() }}</h2>
+    <ul class="city-why">
+      @for (w of whyPoints(); track w) {
+      <li><i class="fa-solid fa-certificate"></i> {{ w }}</li>
+      }
+    </ul>
+  </section>
+
+  <!-- FAQ (reused, good for SEO) -->
+  <section class="city-block">
+    <h2>{{ L.t('faq_title') }}</h2>
+    <details class="faq-item"><summary>{{ L.t('faq_q1') }}</summary><p>{{ L.t('faq_a1') }}</p></details>
+    <details class="faq-item"><summary>{{ L.t('faq_q2') }}</summary><p>{{ L.t('faq_a2') }}</p></details>
+    <details class="faq-item"><summary>{{ L.t('faq_q4') }}</summary><p>{{ L.t('faq_a4') }}</p></details>
+  </section>
+
+  <!-- CTA -->
+  <section class="city-cta">
+    <h2>{{ ctaTitle() }}</h2>
+    <div class="city-actions">
+      <a routerLink="/contact" class="c-btn c-btn-gold">{{ L.t('hero_cta') }}</a>
+      <a [href]="L.whatsappUrl()" target="_blank" rel="noopener" class="c-btn c-btn-wa">
+        <i class="fab fa-whatsapp"></i> {{ L.t('wa_btn') }}
+      </a>
+    </div>
+  </section>
+
+  <!-- Internal links -->
+  <section class="city-block">
+    <h2 class="nearby-title">{{ nearbyTitle() }}</h2>
+    <div class="nearby-links">
+      @for (c of nearby(); track c.slug) {
+      <a [routerLink]="['/appraisal', c.slug]">{{ nearbyLabel(c) }}</a>
+      }
+    </div>
+  </section>
+</div>

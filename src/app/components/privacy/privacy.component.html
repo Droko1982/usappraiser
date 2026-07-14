@@ -1,0 +1,18 @@
+<section class="privacy">
+  <div class="privacy-card">
+    <h1>{{ title() }}</h1>
+    <p class="updated">{{ updated() }}</p>
+    <p class="intro">{{ intro() }}</p>
+
+    @for (s of sections(); track s.h) {
+    <section class="p-block">
+      <h2>{{ s.h }}</h2>
+      @for (para of s.p; track para) {
+      <p>{{ para }}</p>
+      }
+    </section>
+    }
+
+    <a routerLink="/" class="back-link">{{ backHome() }}</a>
+  </div>
+</section>
