@@ -15,7 +15,7 @@
         </div>
     </footer>
 
-    <!-- Phone and WhatsApp Icons for Direct Call/Message -->
+    <!-- Phone and WhatsApp Icons for Direct Call/Message (desktop floating) -->
     <div class="icon-container">
         @if (phoneTel) {
         <a [href]="'tel:' + phoneTel" class="contact-icon" [attr.aria-label]="L.t('call_aria')">
@@ -24,6 +24,21 @@
         }
         @if (whatsapp) {
         <a [href]="L.whatsappUrl()" class="contact-icon whatsapp" target="_blank" rel="noopener" [attr.aria-label]="L.t('whatsapp_aria')">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        }
+    </div>
+
+    <!-- Sticky mobile action bar (replaces floating icons on phones) -->
+    <div class="mobile-cta-bar">
+        <a routerLink="/contact" class="mcb-quote">{{ L.t('hero_cta') }}</a>
+        @if (phoneTel) {
+        <a [href]="'tel:' + phoneTel" class="mcb-icon" [attr.aria-label]="L.t('call_aria')">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+        }
+        @if (whatsapp) {
+        <a [href]="L.whatsappUrl()" class="mcb-icon mcb-wa" target="_blank" rel="noopener" [attr.aria-label]="L.t('whatsapp_aria')">
             <i class="fab fa-whatsapp"></i>
         </a>
         }
