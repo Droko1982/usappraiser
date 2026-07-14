@@ -1,0 +1,73 @@
+<section class="container my-5 services-container">
+  <div class="text-center mb-4">
+    <h2 class="fw-bold text-dark">{{ L.t('serv_title') }}</h2>
+    <p class="text-muted">{{ L.t('serv_intro') }}</p>
+  </div>
+
+  <article>
+    <ul class="list-unstyled row row-cols-1 row-cols-md-2 g-3 text-muted">
+      @for (item of services; track $index) {
+      <li class="col">
+        <i class="fa-solid fa-circle-check me-2"></i> {{ item }}
+      </li>
+      }
+    </ul>
+  </article>
+
+  <!-- Divider Line -->
+  <hr class="my-5" />
+
+  <section>
+    <div class="text-center mb-4">
+      <h2 class="fw-bold text-dark">{{ L.t('serv_areas_title') }}</h2>
+      <p class="text-muted">{{ L.t('serv_areas_intro') }}</p>
+    </div>
+
+    <article class="row">
+      <div class="col-md-6">
+        <h3 class="fw-semibold text-secondary mt-4">{{ L.t('serv_area_on') }}</h3>
+        <p class="text-muted">{{ L.t('serv_area_on_d') }}</p>
+
+        <h3 class="fw-semibold text-secondary mt-4">{{ L.t('serv_area_qc') }}</h3>
+        <p class="text-muted">{{ L.t('serv_area_qc_d') }}</p>
+
+        <h3 class="fw-semibold text-secondary mt-4">{{ L.t('serv_area_bc') }}</h3>
+        <p class="text-muted">{{ L.t('serv_area_bc_d') }}</p>
+
+        <h3 class="fw-semibold text-secondary mt-4">{{ L.t('serv_area_ab') }}</h3>
+        <p class="text-muted">{{ L.t('serv_area_ab_d') }}</p>
+      </div>
+      <div class="col-md-6">
+        <h3 class="fw-semibold text-secondary mt-4">{{ L.t('serv_area_prairies') }}</h3>
+        <p class="text-muted">{{ L.t('serv_area_prairies_d') }}</p>
+
+        <h3 class="fw-semibold text-secondary mt-4">{{ L.t('serv_area_atlantic') }}</h3>
+        <p class="text-muted">{{ L.t('serv_area_atlantic_d') }}</p>
+
+        <h3 class="fw-semibold text-secondary mt-4">{{ L.t('serv_area_north') }}</h3>
+        <p class="text-muted">{{ L.t('serv_area_north_d') }}</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- Divider Line -->
+  <hr class="my-5" />
+
+  <section>
+    <div class="text-center mb-4">
+      <h2 class="fw-bold text-dark">{{ L.t('serv_desig_title') }}</h2>
+    </div>
+
+    <article>
+      <h3 class="fw-semibold text-secondary mt-4">{{ L.t('serv_aaci_t') }}</h3>
+      <p class="text-muted">{{ L.t('serv_aaci_d') }}</p>
+
+      <h3 class="fw-semibold text-secondary mt-4">{{ L.t('serv_cra_t') }}</h3>
+      <p class="text-muted">{{ L.t('serv_cra_d') }}</p>
+    </article>
+  </section>
+
+  <div class="d-flex justify-content-center mt-4">
+    <button class="btn btn-primary btn-lg fw-bold" (click)="getAppraiser()" [attr.aria-label]="L.t('serv_get_btn')">{{ L.t('serv_get_btn') }}</button>
+  </div>
+</section>

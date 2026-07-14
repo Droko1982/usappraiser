@@ -1,0 +1,124 @@
+<section class="apr-hero">
+  <div class="apr-hero-inner">
+    <h1>{{ c().heroTitle }}</h1>
+    <p>{{ c().heroSub }}</p>
+    <a href="#apply" class="apr-cta">{{ c().heroCta }}</a>
+  </div>
+</section>
+
+<div class="apr-body">
+  <!-- Benefits -->
+  <section class="apr-block">
+    <h2>{{ c().benefitsTitle }}</h2>
+    <ul class="apr-benefits">
+      @for (b of c().benefits; track b) {
+      <li><i class="fa-solid fa-circle-check"></i> {{ b }}</li>
+      }
+    </ul>
+  </section>
+
+  <!-- How it works -->
+  <section class="apr-block">
+    <h2>{{ c().howTitle }}</h2>
+    <div class="apr-steps">
+      @for (s of c().steps; track s.h) {
+      <div class="apr-step">
+        <h3>{{ s.h }}</h3>
+        <p>{{ s.d }}</p>
+      </div>
+      }
+    </div>
+  </section>
+
+  <!-- Fee -->
+  <section class="apr-fee">
+    <i class="fa-solid fa-handshake"></i>
+    <div>
+      <h3>{{ c().feeTitle }}</h3>
+      <p>{{ c().feeText }}</p>
+    </div>
+  </section>
+
+  <!-- Application form -->
+  <section id="apply" class="apr-form-wrap">
+    <div class="apr-card">
+      <div class="apr-card-header">
+        <h2><i class="fa-solid fa-user-check"></i> {{ c().formTitle }}</h2>
+      </div>
+      <div class="apr-card-body">
+        <p class="apr-intro">{{ c().formIntro }}</p>
+
+        <form (ngSubmit)="submit($event)" novalidate>
+          <div class="apr-grid">
+            <div class="apr-field">
+              <label>{{ c().f_first }} *</label>
+              <input type="text" name="firstName" [(ngModel)]="dto.firstName" required>
+            </div>
+            <div class="apr-field">
+              <label>{{ c().f_last }} *</label>
+              <input type="text" name="lastName" [(ngModel)]="dto.lastName" required>
+            </div>
+            <div class="apr-field">
+              <label>{{ c().f_email }} *</label>
+              <input type="email" name="email" [(ngModel)]="dto.email" required>
+            </div>
+            <div class="apr-field">
+              <label>{{ c().f_phone }} *</label>
+              <input type="tel" name="phone" [(ngModel)]="dto.phone" required>
+            </div>
+            <div class="apr-field">
+              <label>{{ c().f_company }}</label>
+              <input type="text" name="company" [(ngModel)]="dto.company">
+            </div>
+            <div class="apr-field">
+              <label>{{ c().f_designation }} *</label>
+              <select name="designation" [(ngModel)]="dto.designation" required>
+                <option value="" selected>{{ c().f_designation_ph }}</option>
+                @for (d of designations; track d) { <option [value]="d">{{ d }}</option> }
+              </select>
+            </div>
+            <div class="apr-field">
+              <label>{{ c().f_licence }} *</label>
+              <input type="text" name="licence" [(ngModel)]="dto.licence" required>
+            </div>
+            <div class="apr-field">
+              <label>{{ c().f_province }} *</label>
+              <select name="province" [(ngModel)]="dto.province" required>
+                <option value="" selected>{{ c().f_province_ph }}</option>
+                @for (p of provinces; track p) { <option [value]="p">{{ p }}</option> }
+              </select>
+            </div>
+            <div class="apr-field apr-wide">
+              <label>{{ c().f_regions }} *</label>
+              <input type="text" name="regions" [(ngModel)]="dto.regions" required>
+            </div>
+            <div class="apr-field apr-wide">
+              <label>{{ c().f_specialties }} *</label>
+              <input type="text" name="specialties" [(ngModel)]="dto.specialties" required>
+            </div>
+            <div class="apr-field">
+              <label>{{ c().f_experience }}</label>
+              <input type="text" name="experience" [(ngModel)]="dto.experience">
+            </div>
+            <div class="apr-field">
+              <label>{{ c().f_website }}</label>
+              <input type="text" name="website" [(ngModel)]="dto.website">
+            </div>
+            <div class="apr-field apr-wide">
+              <label>{{ c().f_message }}</label>
+              <textarea name="message" rows="3" [(ngModel)]="dto.message"></textarea>
+            </div>
+          </div>
+
+          <p class="apr-req">{{ c().reqNote }}</p>
+
+          <div class="apr-submit">
+            <button type="submit" [disabled]="sending">{{ c().submit }}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <a routerLink="/" class="apr-back">← {{ L.t('nav_home') }}</a>
+</div>

@@ -1,0 +1,150 @@
+<!-- Selling hero -->
+<section class="hero">
+    <div class="hero-inner">
+        <h1 class="hero-title">{{ L.t('hero_headline') }}</h1>
+        <p class="hero-sub">{{ L.t('hero_sub') }}</p>
+        <div class="hero-actions">
+            <a routerLink="/contact" class="hero-cta">{{ L.t('hero_cta') }}</a>
+            <a [href]="L.whatsappUrl()" target="_blank" rel="noopener" class="hero-wa">
+                <i class="fab fa-whatsapp"></i> {{ L.t('wa_btn') }}
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Trust strip (factual, no partner names) -->
+<section class="trust-strip">
+    <div class="trust-inner">
+        <div class="trust-item"><i class="fa-solid fa-certificate"></i><span>{{ L.t('trust_1') }}</span></div>
+        <div class="trust-item"><i class="fa-solid fa-scale-balanced"></i><span>{{ L.t('trust_2') }}</span></div>
+        <div class="trust-item"><i class="fa-solid fa-handshake"></i><span>{{ L.t('trust_3') }}</span></div>
+        <div class="trust-item"><i class="fa-solid fa-language"></i><span>{{ L.t('trust_4') }}</span></div>
+        <div class="trust-item"><i class="fa-solid fa-circle-check"></i><span>{{ L.t('trust_5') }}</span></div>
+    </div>
+</section>
+
+<div class="home-container max-w-3xl mx-auto px-4 py-8 space-y-6">
+    <!-- Título -->
+    <h2 class="text-center text-2xl font-bold mb-4">{{ L.t('home_why_title') }}</h2>
+
+    <!-- Descripción inicial -->
+    <article>
+        <p class="text-justify leading-relaxed">{{ L.t('home_intro') }}</p>
+    </article>
+
+    <!-- Beneficios clave -->
+    <section>
+        <h2 class="text-center text-2xl font-bold mt-8">{{ L.t('home_benefits_title') }}</h2>
+
+        <ul class="space-y-4 mt-4">
+            <li class="flex flex-col">
+                <strong class="font-semibold">{{ L.t('home_b1_t') }}</strong>
+                <p class="text-justify leading-relaxed">{{ L.t('home_b1_d') }}</p>
+            </li>
+            <li class="flex flex-col">
+                <strong class="font-semibold">{{ L.t('home_b2_t') }}</strong>
+                <p class="text-justify leading-relaxed">{{ L.t('home_b2_d') }}</p>
+            </li>
+            <li class="flex flex-col">
+                <strong class="font-semibold">{{ L.t('home_b3_t') }}</strong>
+                <p class="text-justify leading-relaxed">{{ L.t('home_b3_d') }}</p>
+            </li>
+            <li class="flex flex-col">
+                <strong class="font-semibold">{{ L.t('home_b4_t') }}</strong>
+                <p class="text-justify leading-relaxed">{{ L.t('home_b4_d') }}</p>
+            </li>
+            <li class="flex flex-col">
+                <strong class="font-semibold">{{ L.t('home_b5_t') }}</strong>
+                <p class="text-justify leading-relaxed">{{ L.t('home_b5_d') }}</p>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Texto final -->
+    <p class="text-justify leading-relaxed mt-4">{{ L.t('home_specialize') }}</p>
+
+    <p class="text-center leading-relaxed mt-4">
+        <strong>{{ L.t('home_contact_cta_pre') }}</strong>{{ L.t('home_contact_cta_post') }}
+    </p>
+
+    <!-- Botón de cotización -->
+    <div class="text-center mt-6">
+        <a href="" routerLink="/contact"
+            class="quote-button inline-block px-6 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition-colors">
+            {{ L.t('home_get_quote_btn') }}
+        </a>
+    </div>
+</div>
+
+<!-- How it works / trusted network -->
+<section class="hiw-section">
+    <div class="hiw-inner">
+        <h2 class="hiw-title">{{ L.t('hiw_title') }}</h2>
+        <div class="hiw-grid">
+            <div class="hiw-card">
+                <div class="hiw-num">1</div>
+                <h3>{{ L.t('hiw_1t') }}</h3>
+                <p>{{ L.t('hiw_1d') }}</p>
+            </div>
+            <div class="hiw-card">
+                <div class="hiw-num">2</div>
+                <h3>{{ L.t('hiw_2t') }}</h3>
+                <p>{{ L.t('hiw_2d') }}</p>
+            </div>
+            <div class="hiw-card">
+                <div class="hiw-num">3</div>
+                <h3>{{ L.t('hiw_3t') }}</h3>
+                <p>{{ L.t('hiw_3d') }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Areas we serve (city landing pages / internal links) -->
+<section class="areas-section">
+    <div class="areas-inner">
+        <h2 class="areas-title">{{ L.t('areas_served_title') }}</h2>
+        <p class="areas-sub">{{ L.t('areas_served_sub') }}</p>
+        <div class="areas-links">
+            @for (c of cities; track c.slug) {
+            <a [routerLink]="['/appraisal', c.slug]">{{ L.lang() === 'es' ? c.nameEs : L.lang() === 'fr' ? c.nameFr : c.name }}</a>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- FAQ (SEO) -->
+<section class="faq-section">
+    <div class="faq-inner">
+        <h2 class="faq-heading">{{ L.t('faq_title') }}</h2>
+
+        <details class="faq-item">
+            <summary>{{ L.t('faq_q1') }}</summary>
+            <p>{{ L.t('faq_a1') }}</p>
+        </details>
+        <details class="faq-item">
+            <summary>{{ L.t('faq_q2') }}</summary>
+            <p>{{ L.t('faq_a2') }}</p>
+        </details>
+        <details class="faq-item">
+            <summary>{{ L.t('faq_q3') }}</summary>
+            <p>{{ L.t('faq_a3') }}</p>
+        </details>
+        <details class="faq-item">
+            <summary>{{ L.t('faq_q4') }}</summary>
+            <p>{{ L.t('faq_a4') }}</p>
+        </details>
+        <details class="faq-item">
+            <summary>{{ L.t('faq_q5') }}</summary>
+            <p>{{ L.t('faq_a5') }}</p>
+        </details>
+        <details class="faq-item">
+            <summary>{{ L.t('faq_q6') }}</summary>
+            <p>{{ L.t('faq_a6') }}</p>
+        </details>
+
+        <div class="text-center" style="margin-top: 28px;">
+            <a href="" routerLink="/contact" class="quote-button">{{ L.t('home_get_quote_btn') }}</a>
+        </div>
+    </div>
+</section>
