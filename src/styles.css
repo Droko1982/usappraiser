@@ -132,3 +132,8 @@ a:hover { color: var(--heading); }
   margin: 0 auto;
   padding: 56px 24px;
 }
+
+/* Tighter rhythm on phones */
+@media (max-width: 768px) {
+  .section-wrap { padding: 40px 18px; }
+}

@@ -64,3 +64,57 @@
 }
 .contact-icon.whatsapp { background-color: #25d366; }
 .contact-icon.whatsapp:hover { background-color: #128c7e; }
+
+/* Sticky mobile action bar — hidden on desktop */
+.mobile-cta-bar { display: none; }
+
+@media (max-width: 768px) {
+  /* Floating circles are replaced by the full-width bar on phones */
+  .icon-container { display: none; }
+
+  .mobile-cta-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 950;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+    background: rgba(4, 30, 66, 0.96);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.28);
+  }
+  .mcb-quote {
+    flex: 1;
+    text-align: center;
+    background: #b31942;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 1.02rem;
+    padding: 14px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    box-shadow: 0 6px 16px rgba(179, 25, 66, 0.4);
+  }
+  .mcb-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #0a3161;
+    color: #ffffff;
+    font-size: 20px;
+    text-decoration: none;
+  }
+  .mcb-wa { background: #25d366; }
+
+  /* Reserve space so the bar never covers footer content */
+  .footer { padding-bottom: 84px; }
+}
