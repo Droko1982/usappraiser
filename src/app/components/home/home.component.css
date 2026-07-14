@@ -313,7 +313,9 @@
   .hero { padding: 56px 18px 64px; }
   .hero-title { font-size: 1.85rem; }
   .hero-sub { font-size: 1.05rem; }
-  .hero-cta { width: 100%; }
+  .hero-actions { flex-direction: column; }
+  .hero-cta,
+  .hero-wa { width: 100%; justify-content: center; }
   .home-container { max-width: 92%; padding: 28px 22px; }
   .home-container h2 { font-size: 1.4rem; }
   .faq-item summary { font-size: 1rem; }
