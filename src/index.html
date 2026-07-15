@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>US Appraiser — Real Estate Appraisal Quotes Across the USA | Evalúos · Évaluations</title>
+  <title>US Appraiser — Real Estate Appraisal Quotes Across the USA</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -73,6 +73,7 @@
   <meta name="twitter:description"
     content="Fast, free quotes for professional real estate appraisals anywhere in the USA. English, Spanish & French.">
   <meta name="twitter:image" content="https://usappraiser.com/assets/og.png">
+  <meta name="twitter:image:alt" content="US Appraiser — real estate appraisal quotes across the USA">
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -122,45 +123,8 @@
   }
   </script>
 
-  <!-- FAQ structured data (rich results) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How much does a real estate appraisal cost in the United States?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Appraisal fees vary by property type, location and complexity. Request a free quote and we will give you an exact price with no obligation." }
-      },
-      {
-        "@type": "Question",
-        "name": "How long does a home appraisal take?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Most residential appraisals are completed within 2 to 5 business days of the property inspection. Rush service is often available on request." }
-      },
-      {
-        "@type": "Question",
-        "name": "What areas of the United States do you cover?",
-        "acceptedAnswer": { "@type": "Answer", "text": "We connect you with qualified appraisers in all 50 states, from New York and California to Texas, Florida, Illinois and everywhere in between." }
-      },
-      {
-        "@type": "Question",
-        "name": "Are your appraisers certified?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. We work with state-certified and licensed appraisers who follow the Uniform Standards of Professional Appraisal Practice (USPAP)." }
-      },
-      {
-        "@type": "Question",
-        "name": "What can a real estate appraisal be used for?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Mortgage financing, refinancing, purchases, matrimonial and divorce settlements, estate settlement, capital gains, tax assessment appeals, and more." }
-      },
-      {
-        "@type": "Question",
-        "name": "Do you offer service in Spanish or French?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes, our service is available in English, Spanish and French. You can request your appraisal quote in any of the three." }
-      }
-    ]
-  }
-  </script>
+  <!-- FAQ structured data is injected at runtime by the Home component (which renders the FAQ),
+       so the markup always matches the visible questions per Google's rich-results policy. -->
 
   <!-- Favicon (US Appraiser emblem) -->
   <link rel="icon" type="image/png" href="assets/favicon-us.png" sizes="256x256">

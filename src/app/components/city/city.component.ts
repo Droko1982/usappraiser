@@ -145,7 +145,22 @@ export class CityComponent {
     this.meta.updateTag({ name: 'twitter:title', content: title });
     this.meta.updateTag({ name: 'twitter:description', content: desc });
     this.setCanonical(url);
+    this.setAlternates(url);
     this.setJsonLd(url, c, this.provName());
+  }
+
+  /** Point every hreflang alternate at this city page's own URL (single-URL trilingual model). */
+  private setAlternates(url: string): void {
+    for (const lang of ['en', 'es', 'fr', 'x-default']) {
+      let link = this.doc.querySelector(`link[rel='alternate'][hreflang='${lang}']`) as HTMLLinkElement | null;
+      if (!link) {
+        link = this.doc.createElement('link');
+        link.setAttribute('rel', 'alternate');
+        link.setAttribute('hreflang', lang);
+        this.doc.head.appendChild(link);
+      }
+      link.setAttribute('href', url);
+    }
   }
 
   /** Per-city structured data: a localized Service offering + breadcrumb trail. */

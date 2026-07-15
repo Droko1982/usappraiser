@@ -69,19 +69,19 @@
   align-items: center;
   gap: 10px;
   padding: 16px 34px;
-  background-color: #25d366;
+  background-color: #0f7a43;
   color: #ffffff;
   font-family: 'Poppins', sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
   text-decoration: none;
   border-radius: 10px;
-  box-shadow: 0 10px 26px rgba(37, 211, 102, 0.4);
+  box-shadow: 0 10px 26px rgba(15, 122, 67, 0.4);
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
 .hero-wa i { font-size: 1.35rem; }
 .hero-wa:hover {
-  background-color: #1eb857;
+  background-color: #0b5f34;
   color: #ffffff;
   transform: translateY(-3px);
 }

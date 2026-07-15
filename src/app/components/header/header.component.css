@@ -133,8 +133,26 @@
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  outline: none;
   padding-right: 2px;
+}
+/* Visible keyboard focus for the language switcher and nav */
+.lang-select-wrap:focus-within {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+.nav-link:focus-visible,
+.theme-toggle:focus-visible,
+.menu-icon:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+/* Active route indicator */
+.nav-link.active {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+}
+.nav-link-cta.active {
+  background: #b31942;
 }
 .lang-select option {
   color: #0a3161;

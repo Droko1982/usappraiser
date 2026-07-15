@@ -118,11 +118,11 @@
   }
   
   .contact-icon.whatsapp {
-    background-color: #25d366; /* WhatsApp color */
+    background-color: #0f7a43; /* WhatsApp color */
   }
   
   .contact-icon.whatsapp:hover {
-    background-color: #128c7e; /* Darker WhatsApp color on hover */
+    background-color: #0b5f34; /* Darker WhatsApp color on hover */
   }
   
   html, body {
