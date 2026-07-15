@@ -1,0 +1,15 @@
+{
+  "name": "US Appraiser",
+  "short_name": "US Appraiser",
+  "description": "Free real estate appraisal quotes across the United States. Residential & commercial, state-certified appraisers, USPAP standards.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0a3161",
+  "theme_color": "#0a3161",
+  "lang": "en",
+  "icons": [
+    { "src": "favicon-us.png", "sizes": "256x256", "type": "image/png", "purpose": "any" },
+    { "src": "logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
