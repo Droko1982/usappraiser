@@ -137,3 +137,35 @@ a:hover { color: var(--heading); }
 @media (max-width: 768px) {
   .section-wrap { padding: 40px 18px; }
 }
+
+/* Skip-to-content link (keyboard/screen-reader) */
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -52px;
+  z-index: 2000;
+  background: var(--navy);
+  color: #ffffff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: top .15s ease;
+}
+.skip-link:focus {
+  top: 12px;
+  color: #ffffff;
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+:focus:not(:focus-visible) { outline: none; }
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

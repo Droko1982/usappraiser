@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center align-items-center vh-30">
   <div class="card" style="width: 100%; max-width: 820px; margin-top: 20px;">
     <div class="card-header text-center">
-      <h2 class="left-5"><i class="fa-solid fa-clipboard-check"></i> {{ L.t('ct_title') }}</h2>
+      <h1 class="left-5"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i> {{ L.t('ct_title') }}</h1>
     </div>
 
     <div class="card-body p-4" style="margin-bottom: 20px;">
@@ -9,16 +9,20 @@
 
       <div class="text-center mb-4">
         <a [href]="L.whatsappUrl()" target="_blank" rel="noopener" class="wa-inline">
-          <i class="fab fa-whatsapp"></i> {{ L.t('wa_btn') }}
+          <i class="fab fa-whatsapp" aria-hidden="true"></i> {{ L.t('wa_btn') }}
         </a>
       </div>
 
-      <form #f="ngForm" (ngSubmit)="sendEmail($event)" class="needs-validation" novalidate>
+      <form #f="ngForm" (ngSubmit)="sendEmail($event, f)" class="needs-validation" novalidate>
+        <!-- Honeypot: hidden from humans, catches spam bots -->
+        <input type="text" name="_honey" [(ngModel)]="honeypot" class="hp-field" tabindex="-1" autocomplete="off"
+          aria-hidden="true" />
         <div class="mb-3 row">
           <label class="col-sm-4 col-form-label" for="firstName">{{ L.t('ct_first') }} *</label>
           <div class="col-sm-8">
             <input #firstName="ngModel" class="form-control"
-              [ngClass]="firstName.invalid && firstName.dirty ? 'is-invalid' : ''" type="text" name="firstName"
+              [ngClass]="firstName.invalid && firstName.touched ? 'is-invalid' : ''"
+              [attr.aria-invalid]="firstName.invalid && firstName.touched" type="text" name="firstName"
               id="firstName" [(ngModel)]="contacDto.firstName" required [placeholder]="L.t('ct_first_ph')" />
           </div>
         </div>
@@ -27,7 +31,8 @@
           <label class="col-sm-4 col-form-label" for="lastName">{{ L.t('ct_last') }} *</label>
           <div class="col-sm-8">
             <input #lastName="ngModel" class="form-control"
-              [ngClass]="lastName.invalid && lastName.dirty ? 'is-invalid' : ''" type="text" name="lastName"
+              [ngClass]="lastName.invalid && lastName.touched ? 'is-invalid' : ''"
+              [attr.aria-invalid]="lastName.invalid && lastName.touched" type="text" name="lastName"
               id="lastName" [(ngModel)]="contacDto.lastName" required [placeholder]="L.t('ct_last_ph')" />
           </div>
         </div>
@@ -35,7 +40,9 @@
         <div class="mb-3 row">
           <label class="col-sm-4 col-form-label" for="emailAddress">{{ L.t('ct_email') }} *</label>
           <div class="col-sm-8">
-            <input #email="ngModel" class="form-control" [ngClass]="email.invalid && email.dirty ? 'is-invalid' : ''"
+            <input #email="ngModel" class="form-control"
+              [ngClass]="email.invalid && email.touched ? 'is-invalid' : ''"
+              [attr.aria-invalid]="email.invalid && email.touched"
               type="email" name="emailAddress" id="emailAddress" [(ngModel)]="contacDto.emailAddress" required
               [placeholder]="L.t('ct_email_ph')" />
           </div>
@@ -44,7 +51,9 @@
         <div class="mb-3 row">
           <label class="col-sm-4 col-form-label" for="phoneNumber">{{ L.t('ct_phone') }} *</label>
           <div class="col-sm-8">
-            <input #phone="ngModel" class="form-control" [ngClass]="phone.invalid && phone.dirty ? 'is-invalid' : ''"
+            <input #phone="ngModel" class="form-control"
+              [ngClass]="phone.invalid && phone.touched ? 'is-invalid' : ''"
+              [attr.aria-invalid]="phone.invalid && phone.touched"
               type="tel" name="phoneNumber" id="phoneNumber" [(ngModel)]="contacDto.phoneNumber" required
               [placeholder]="L.t('ct_phone_ph')" />
           </div>

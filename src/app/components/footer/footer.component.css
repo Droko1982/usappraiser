@@ -62,8 +62,8 @@
   background-color: #ffffff;
   transform: scale(1.08);
 }
-.contact-icon.whatsapp { background-color: #25d366; }
-.contact-icon.whatsapp:hover { background-color: #128c7e; }
+.contact-icon.whatsapp { background-color: #0f7a43; }
+.contact-icon.whatsapp:hover { background-color: #0b5f34; }
 
 /* Sticky mobile action bar — hidden on desktop */
 .mobile-cta-bar { display: none; }
@@ -113,7 +113,7 @@
     font-size: 20px;
     text-decoration: none;
   }
-  .mcb-wa { background: #25d366; }
+  .mcb-wa { background: #0f7a43; }
 
   /* Reserve space so the bar never covers footer content */
   .footer { padding-bottom: 84px; }

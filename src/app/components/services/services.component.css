@@ -5,13 +5,14 @@
   color: var(--text);
 }
 
+.services-container h1,
 .services-container h2 {
   text-align: center;
   color: var(--heading);
   font-family: 'Poppins', sans-serif;
   font-size: 1.8rem;
   font-weight: 700;
-  margin-bottom: 14px;
+  margin: 0 0 14px;
 }
 
 .services-container h3 {

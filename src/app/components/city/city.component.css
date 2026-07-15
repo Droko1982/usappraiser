@@ -23,8 +23,8 @@
 }
 .c-btn-gold { background: #b31942; color: #ffffff; box-shadow: 0 8px 20px rgba(179, 25, 66,.35); }
 .c-btn-gold:hover { background: #8f1436; color: #fff; transform: translateY(-2px); }
-.c-btn-wa { background: #25d366; color: #fff; box-shadow: 0 8px 20px rgba(37,211,102,.32); }
-.c-btn-wa:hover { background: #1eb857; color: #fff; transform: translateY(-2px); }
+.c-btn-wa { background: #0f7a43; color: #fff; box-shadow: 0 8px 20px rgba(15, 122, 67,.32); }
+.c-btn-wa:hover { background: #0b5f34; color: #fff; transform: translateY(-2px); }
 .c-btn-wa i { font-size: 1.25rem; }
 
 .city-body { max-width: 1000px; margin: 0 auto; padding: 40px 22px 70px; }

@@ -1,10 +1,9 @@
 import { Component, OnInit, inject, effect } from '@angular/core';
-import { NgIf, NgFor, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ContacDTO } from '../../dto/contac-dto';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
 import { LanguageService } from '../../services/language.service';
 import { SeoService } from '../../services/seo.service';
 
@@ -13,7 +12,6 @@ import { SeoService } from '../../services/seo.service';
  * FormSubmit.co needs ONLY this email address — no account, no API keys.
  * First submission (or the one-time activation email FormSubmit sends here) turns it on;
  * after that every request lands in this inbox.
- * NOTE: Wieland & Associates' EmailJS integration was intentionally removed so no leads route to them.
  */
 const LEAD_EMAIL = 'info@usappraiser.com';
 const FORMSUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${LEAD_EMAIL}`;
@@ -23,7 +21,7 @@ const FORMSUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${LEAD_EMAIL}`;
   standalone: true,
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css'],
-  imports: [NgIf, NgFor, FormsModule, CommonModule]
+  imports: [FormsModule, CommonModule]
 })
 export class ContactComponent implements OnInit {
 
@@ -32,60 +30,44 @@ export class ContactComponent implements OnInit {
   private seo = inject(SeoService);
 
   contacDto: ContacDTO = new ContacDTO();
-  propertyType: string[];
-  reportType: string[];
-  purposeType: string[];
-  purchase: string[];
-  newConstruction: string[];
-  refinance: string[];
-  relocation: string[];
-  modelHause: string[];
-  dwellingStyle: string[];
-  parking: string[];
-  parkingType: string[];
-  dwellingType: string[];
-  isRetrospectiveAppraisal: string[];
+  propertyType: string[] = [];
+  reportType: string[] = [];
+  purposeType: string[] = [];
+  dwellingStyle: string[] = [];
+  dwellingType: string[] = [];
+  isRetrospectiveAppraisal: string[] = [];
   sending = false;
+  /** Honeypot — bots fill hidden fields; humans never see it. Non-empty => drop silently. */
+  honeypot = '';
 
-  constructor(private route: Router) {
+  constructor() {
     effect(() => { this.L.lang(); this.seo.set('contact'); });
-    this.contacDto = new ContacDTO();
-    this.propertyType = [];
-    this.reportType = [];
-    this.purposeType = [];
-    this.purchase = [];
-    this.newConstruction = [];
-    this.refinance = [];
-    this.relocation = [];
-    this.modelHause = [];
-    this.dwellingStyle = [];
-    this.parking = [];
-    this.parkingType = [];
-    this.dwellingType = [];
-    this.isRetrospectiveAppraisal = [];
   }
 
   ngOnInit(): void {
     this.uploadPropertyType();
+    this.uploadReportType();
+    this.uploadPurposeType();
     this.uploadDwellingStyle();
     this.uploadDwellingType();
-    this.uploadPurposeType();
-    this.uploadReportType();
-    this.uploadNewConstruction();
-    this.uploadRefinance();
-    this.uploadRelocation();
     this.uploadIsRetrospectiveAppraisal();
   }
 
-  public sendEmail(event: Event): void {
+  public sendEmail(event: Event, form: NgForm): void {
     event.preventDefault();
+    if (this.honeypot) { return; }          // bot caught by honeypot
     if (this.sending) { return; }
+    if (form.invalid) {                      // don't send empty/incomplete leads
+      form.form.markAllAsTouched();
+      return;
+    }
     this.sending = true;
 
     const payload: Record<string, string> = {
       _subject: 'New Appraisal Request — US Appraiser',
       _template: 'table',
       _captcha: 'false',
+      _honey: this.honeypot,
       Source: 'US Appraiser — usappraiser.com',
       'First Name': this.contacDto.firstName,
       'Last Name': this.contacDto.lastName,
@@ -125,6 +107,7 @@ export class ContactComponent implements OnInit {
           timerProgressBar: true,
         });
         this.contacDto = new ContacDTO();
+        form.resetForm();
       },
       error: () => {
         this.sending = false;
@@ -163,7 +146,7 @@ export class ContactComponent implements OnInit {
       "Desktop Appraisal",
       "Progress Report",
       "Completion Certificate",
-      "Replacement cost",
+      "Replacement Cost",
       "Consulting Request",
       "Other"
     ];
@@ -178,110 +161,54 @@ export class ContactComponent implements OnInit {
       "Pre-List / Pre-Sale",
       "Relocation",
       "Estate Settlement With Buyout",
-      "Estate Settlement Tittle Tranfer",
+      "Estate Settlement Title Transfer",
       "Probate",
-      "Tittle Transfer",
+      "Title Transfer",
       "Power Of Sale Or Foreclosure",
-      "Consumer proposal",
       "IRS / Tax Reporting",
       "Prenups",
       "Update",
       "Internal Asset Management",
-      "Assist marketing subject property",
+      "Assist Marketing Subject Property",
       "Other"
-    ],
-
-      this.purchase = [
-        "MLS Sale",
-        "Private Sale",
-        "New Construction"
-      ]
-  }
-
-  private uploadNewConstruction() {
-    this.newConstruction = [
-      "Mattamy",
-      "Caivan",
-      "Minto",
-      "Richcraft",
-      "Urbandale",
-      "Valecraft",
-      "Laridge",
-      "Other"
-    ],
-
-      this.modelHause = [
-        "As If",
-        "As If Completed",
-        "Variation for new construction"
-      ]
-  }
-
-  private uploadRefinance() {
-    this.refinance = [
-      "1st Mortgage",
-      "2nd Mortgage"
     ];
-  }
-
-  private uploadRelocation() {
-    this.relocation = [
-      "BGRS",
-      "OPG",
-      "WICHERT",
-      "TRANSFEREASE",
-      "RCMP",
-      "Other"
-    ]
   }
 
   private uploadDwellingStyle() {
     this.dwellingStyle = [
       "Detached",
       "Row Unit",
-      "Semi Datached",
-      "Apartament",
+      "Semi-Detached",
+      "Apartment",
       "Condominium"
-    ],
-
-      this.parking = [
-        "Yes",
-        "No"
-      ],
-
-      this.parkingType = [
-        "Surface",
-        "Covered",
-        "Underground"
-      ]
-
+    ];
   }
 
   private uploadDwellingType() {
     this.dwellingType = [
-      "1 ½ Storey",
-      "2 Storey",
-      "3 Storey",
+      "1½ Story",
+      "2 Story",
+      "3 Story",
       "Fourplex",
-      "Bungalow (1 Storey)",
+      "Bungalow (1 Story)",
       "Bungalow With Loft",
       "Double",
-      "Duplex / Secundary Dwelling Unit / In-Law Suite",
-      "Hi ranch",
+      "Duplex / Secondary Dwelling Unit / In-Law Suite",
+      "Raised Ranch",
       "Mobile",
       "Modular",
       "One Level",
       "Split Level",
       "Triplex",
       "Other"
-    ]
+    ];
   }
 
   private uploadIsRetrospectiveAppraisal() {
     this.isRetrospectiveAppraisal = [
       "Yes",
       "No"
-    ]
+    ];
   }
 
 }

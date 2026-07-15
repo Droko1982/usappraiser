@@ -40,6 +40,7 @@ export class SeoService {
     this.meta.updateTag({ name: 'twitter:title', content: e.title });
     this.meta.updateTag({ name: 'twitter:description', content: e.desc });
     this.setCanonical(url);
+    this.setAlternates(url);
   }
 
   private setCanonical(url: string): void {
@@ -51,13 +52,27 @@ export class SeoService {
     }
     link.setAttribute('href', url);
   }
+
+  /** Single-URL trilingual model: every hreflang alternate for a page points at that page's own URL. */
+  private setAlternates(url: string): void {
+    for (const lang of ['en', 'es', 'fr', 'x-default']) {
+      let link = this.doc.querySelector(`link[rel='alternate'][hreflang='${lang}']`) as HTMLLinkElement | null;
+      if (!link) {
+        link = this.doc.createElement('link');
+        link.setAttribute('rel', 'alternate');
+        link.setAttribute('hreflang', lang);
+        this.doc.head.appendChild(link);
+      }
+      link.setAttribute('href', url);
+    }
+  }
 }
 
 const SEO: Record<Lang, Record<SeoPage, SeoEntry>> = {
   en: {
     home: {
-      title: 'US Appraiser | Free Real Estate Appraisal Quotes Across the United States',
-      desc: 'Free, fast quotes for residential & commercial real estate appraisals anywhere in the USA. State-certified and licensed appraisers (MAI, SRA), USPAP standards. Trilingual EN/ES/FR — get your quote today.',
+      title: 'US Appraiser — Free Real Estate Appraisal Quotes in the USA',
+      desc: 'Fast, free quotes for residential & commercial real estate appraisals anywhere in the USA. State-certified appraisers (MAI, SRA), USPAP standards.',
       keywords: 'real estate appraisal USA, home appraisal, commercial appraisal, appraisal quote, appraisal cost, appraiser near me, certified appraiser, MAI, SRA, USPAP, mortgage appraisal, divorce appraisal, estate appraisal',
     },
     services: {
@@ -66,8 +81,8 @@ const SEO: Record<Lang, Record<SeoPage, SeoEntry>> = {
       keywords: 'appraisal services, residential appraisal, commercial appraisal, land appraisal, machinery and equipment appraisal, mortgage appraisal, capital gains appraisal, estate appraisal, USPAP',
     },
     contact: {
-      title: 'Get a Free Appraisal Quote — Anywhere in the USA | US Appraiser',
-      desc: 'Request a free, no-obligation real estate appraisal quote across the United States. Fast reply, residential & commercial, trilingual service. Tell us about your property and get quoted today.',
+      title: 'Free Appraisal Quote, Anywhere in the USA | US Appraiser',
+      desc: 'Request a free, no-obligation real estate appraisal quote anywhere in the USA. Fast reply, residential & commercial. Tell us about your property today.',
       keywords: 'free appraisal quote, real estate appraisal quote, appraisal cost, request appraisal, appraiser near me',
     },
     privacy: {

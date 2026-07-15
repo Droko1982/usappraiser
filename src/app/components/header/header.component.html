@@ -1,31 +1,37 @@
 <header class="site-header">
   <div class="header-inner">
     <a class="brand" href="" routerLink="/" [title]="L.t('nav_home')">
-      <img src="assets/logo-full.png" class="brand-full" alt="US Appraiser — real estate appraisals across the United States">
+      <img src="assets/logo-full.png" class="brand-full" width="1180" height="320"
+        alt="US Appraiser — real estate appraisals across the United States">
     </a>
 
-    <nav class="nav" [class.open]="menuValue">
-      <a href="" routerLink="/" class="nav-link" (click)="closeMenu()">{{ L.t('nav_home') }}</a>
-      <a href="" routerLink="/services" class="nav-link" (click)="closeMenu()">{{ L.t('nav_services') }}</a>
-      <a href="" routerLink="/contact" class="nav-link nav-link-cta" (click)="closeMenu()">{{ L.t('nav_contact') }}</a>
+    <nav id="primary-nav" class="nav" [class.open]="menuValue" aria-label="Primary">
+      <a href="" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+        ariaCurrentWhenActive="page" class="nav-link" (click)="closeMenu()">{{ L.t('nav_home') }}</a>
+      <a href="" routerLink="/services" routerLinkActive="active" ariaCurrentWhenActive="page" class="nav-link"
+        (click)="closeMenu()">{{ L.t('nav_services') }}</a>
+      <a href="" routerLink="/contact" routerLinkActive="active" ariaCurrentWhenActive="page"
+        class="nav-link nav-link-cta" (click)="closeMenu()">{{ L.t('nav_contact') }}</a>
     </nav>
 
     <div class="header-actions">
       <button type="button" class="theme-toggle" (click)="theme.toggle()"
         [attr.aria-label]="theme.theme() === 'dark' ? 'Light mode' : 'Dark mode'"
         [title]="theme.theme() === 'dark' ? 'Light mode' : 'Dark mode'">
-        <i class="fa-solid" [class.fa-moon]="theme.theme() === 'light'" [class.fa-sun]="theme.theme() === 'dark'"></i>
+        <i class="fa-solid" [class.fa-moon]="theme.theme() === 'light'" [class.fa-sun]="theme.theme() === 'dark'"
+          aria-hidden="true"></i>
       </button>
       <div class="lang-select-wrap" title="Language">
-        <i class="fa-solid fa-globe"></i>
+        <i class="fa-solid fa-globe" aria-hidden="true"></i>
         <select class="lang-select" [value]="L.lang()" (change)="onLang($event)" aria-label="Language">
           @for (l of L.languages; track l.code) {
           <option [value]="l.code">{{ l.label }}</option>
           }
         </select>
       </div>
-      <button type="button" class="menu-icon" (click)="openMenu()" aria-label="Menu">
-        <i class="{{menu_icon}}"></i>
+      <button type="button" class="menu-icon" (click)="openMenu()" aria-label="Menu"
+        [attr.aria-expanded]="menuValue" aria-controls="primary-nav">
+        <i class="{{menu_icon}}" aria-hidden="true"></i>
       </button>
     </div>
   </div>
