@@ -16,6 +16,72 @@ import { SeoService } from '../../services/seo.service';
 const LEAD_EMAIL = 'info@usappraiser.com';
 const FORMSUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${LEAD_EMAIL}`;
 
+/**
+ * Localized labels for the dropdown options.
+ * The submitted VALUE stays English (so every lead email reads consistently for the office);
+ * only the visible label is translated for ES/FR visitors.
+ */
+const OPT_LABELS: Record<string, { es: string; fr: string }> = {
+  // Property type
+  'Residential': { es: 'Residencial', fr: 'Résidentiel' },
+  'Commercial': { es: 'Comercial', fr: 'Commercial' },
+  'Land / Vacant Land': { es: 'Terreno / Terreno baldío', fr: 'Terrain / Terrain vacant' },
+  'Machinery / Equipment': { es: 'Maquinaria / Equipo', fr: 'Machinerie / Équipement' },
+  // Report type
+  'Full Appraisal': { es: 'Evalúo completo', fr: 'Évaluation complète' },
+  'Full Appraisal With Market Rent': { es: 'Evalúo completo con renta de mercado', fr: 'Évaluation complète avec loyer marchand' },
+  'Market Rent': { es: 'Renta de mercado', fr: 'Loyer marchand' },
+  'Cancelled Appraisal - Report Written': { es: 'Evalúo cancelado - informe redactado', fr: 'Évaluation annulée - rapport rédigé' },
+  'Capital Gains': { es: 'Ganancias de capital', fr: 'Gains en capital' },
+  'Drive By': { es: 'Inspección exterior (drive-by)', fr: 'Inspection extérieure (drive-by)' },
+  'Desktop Appraisal': { es: 'Evalúo de escritorio', fr: 'Évaluation sur dossier' },
+  'Progress Report': { es: 'Informe de avance', fr: 'Rapport d’avancement' },
+  'Completion Certificate': { es: 'Certificado de finalización', fr: 'Certificat d’achèvement' },
+  'Replacement Cost': { es: 'Costo de reemplazo', fr: 'Coût de remplacement' },
+  'Consulting Request': { es: 'Solicitud de consultoría', fr: 'Demande de consultation' },
+  'Other': { es: 'Otro', fr: 'Autre' },
+  // Purpose
+  'Purchase': { es: 'Compra', fr: 'Achat' },
+  'Refinance': { es: 'Refinanciamiento', fr: 'Refinancement' },
+  'Divorce': { es: 'Divorcio', fr: 'Divorce' },
+  'Pre-List / Pre-Sale': { es: 'Antes de listar / Preventa', fr: 'Avant inscription / vente' },
+  'Relocation': { es: 'Reubicación', fr: 'Réinstallation' },
+  'Estate Settlement With Buyout': { es: 'Sucesión con compra de participación', fr: 'Règlement successoral avec rachat' },
+  'Estate Settlement Title Transfer': { es: 'Sucesión con transferencia de título', fr: 'Règlement successoral avec transfert de titre' },
+  'Probate': { es: 'Sucesión testamentaria', fr: 'Homologation' },
+  'Title Transfer': { es: 'Transferencia de título', fr: 'Transfert de titre' },
+  'Power Of Sale Or Foreclosure': { es: 'Ejecución hipotecaria', fr: 'Pouvoir de vente ou saisie' },
+  'IRS / Tax Reporting': { es: 'IRS / Declaración de impuestos', fr: 'IRS / Déclaration fiscale' },
+  'Prenups': { es: 'Acuerdo prenupcial', fr: 'Contrat de mariage' },
+  'Update': { es: 'Actualización', fr: 'Mise à jour' },
+  'Internal Asset Management': { es: 'Gestión interna de activos', fr: 'Gestion interne d’actifs' },
+  'Assist Marketing Subject Property': { es: 'Apoyo a la comercialización del inmueble', fr: 'Aide à la mise en marché du bien' },
+  // Dwelling style
+  'Detached': { es: 'Independiente', fr: 'Individuelle (détachée)' },
+  'Row Unit': { es: 'Casa en hilera', fr: 'Maison en rangée' },
+  'Semi-Detached': { es: 'Pareada / Semi-independiente', fr: 'Jumelée (semi-détachée)' },
+  'Apartment': { es: 'Apartamento', fr: 'Appartement' },
+  'Condominium': { es: 'Condominio', fr: 'Copropriété' },
+  // Dwelling type
+  '1½ Story': { es: '1½ piso', fr: '1½ étage' },
+  '2 Story': { es: '2 pisos', fr: '2 étages' },
+  '3 Story': { es: '3 pisos', fr: '3 étages' },
+  'Fourplex': { es: 'Cuádruplex', fr: 'Quadruplex' },
+  'Bungalow (1 Story)': { es: 'Bungaló (1 piso)', fr: 'Bungalow (1 étage)' },
+  'Bungalow With Loft': { es: 'Bungaló con altillo', fr: 'Bungalow avec mezzanine' },
+  'Double': { es: 'Doble', fr: 'Double' },
+  'Duplex / Secondary Dwelling Unit / In-Law Suite': { es: 'Dúplex / Vivienda secundaria / Suite anexa', fr: 'Duplex / Logement secondaire / Suite parentale' },
+  'Raised Ranch': { es: 'Rancho elevado (raised ranch)', fr: 'Maison surélevée (raised ranch)' },
+  'Mobile': { es: 'Móvil', fr: 'Mobile' },
+  'Modular': { es: 'Modular', fr: 'Modulaire' },
+  'One Level': { es: 'Un nivel', fr: 'Plain-pied' },
+  'Split Level': { es: 'Niveles escalonados (split level)', fr: 'Paliers décalés (split level)' },
+  'Triplex': { es: 'Tríplex', fr: 'Triplex' },
+  // Yes / No
+  'Yes': { es: 'Sí', fr: 'Oui' },
+  'No': { es: 'No', fr: 'Non' },
+};
+
 @Component({
   selector: 'app-contact',
   standalone: true,
@@ -51,6 +117,14 @@ export class ContactComponent implements OnInit {
     this.uploadDwellingStyle();
     this.uploadDwellingType();
     this.uploadIsRetrospectiveAppraisal();
+  }
+
+  /** Localized display label for a dropdown option (English value is preserved for submission). */
+  optLabel(value: string): string {
+    const t = OPT_LABELS[value];
+    if (!t) { return value; }
+    const l = this.L.lang();
+    return l === 'es' ? t.es : l === 'fr' ? t.fr : value;
   }
 
   public sendEmail(event: Event, form: NgForm): void {

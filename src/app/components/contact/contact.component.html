@@ -73,7 +73,7 @@
             <select class="form-select" name="reportType" id="reportType" [(ngModel)]="contacDto.reportType" required>
               <option value="" selected class="text-center">{{ L.t('ct_reportType_ph') }}</option>
               @for (item of reportType; track item) {
-              <option class="text-center" [value]="item">{{item}}</option>
+              <option class="text-center" [value]="item">{{ optLabel(item) }}</option>
               }
             </select>
           </div>
@@ -93,7 +93,7 @@
             <select name="propertyType" id="propertyType" class="form-select" [(ngModel)]="contacDto.propertyType" required>
               <option value="" selected class="text-center">{{ L.t('ct_propertyType_ph') }}</option>
               @for (item of propertyType; track $index) {
-              <option class="text-center" [value]="item">{{item}}</option>
+              <option class="text-center" [value]="item">{{ optLabel(item) }}</option>
               }
             </select>
           </div>
@@ -105,7 +105,7 @@
             <select class="form-select" name="purposeType" id="purposeType" [(ngModel)]="contacDto.purposeType" required>
               <option value="" selected class="text-center">{{ L.t('ct_purposeType_ph') }}</option>
               @for (item of purposeType; track $index) {
-              <option class="text-center" [value]="item">{{item}}</option>
+              <option class="text-center" [value]="item">{{ optLabel(item) }}</option>
               }
             </select>
           </div>
@@ -126,7 +126,7 @@
               [(ngModel)]="contacDto.dwellingStyleType" required>
               <option value="" selected class="text-center">{{ L.t('ct_dwellingStyle_ph') }}</option>
               @for (item of dwellingStyle; track item) {
-              <option class="text-center" [value]="item">{{item}}</option>
+              <option class="text-center" [value]="item">{{ optLabel(item) }}</option>
               }
             </select>
           </div>
@@ -138,7 +138,7 @@
             <select class="form-select" name="dwellingType" id="dwellingType" [(ngModel)]="contacDto.dwellingType" required>
               <option value="" selected class="text-center">{{ L.t('ct_dwellingType_ph') }}</option>
               @for (item of dwellingType; track item) {
-              <option class="text-center" [value]="item">{{item}}</option>
+              <option class="text-center" [value]="item">{{ optLabel(item) }}</option>
               }
             </select>
           </div>
@@ -167,7 +167,7 @@
               [(ngModel)]="contacDto.isRetrospectiveAppraisal">
               <option value="" selected class="text-center">{{ L.t('ct_select') }}</option>
               @for (item of isRetrospectiveAppraisal; track item) {
-              <option class="text-center" [value]="item">{{item}}</option>
+              <option class="text-center" [value]="item">{{ optLabel(item) }}</option>
               }
             </select>
           </div>
