@@ -10,6 +10,8 @@
                 <p>&copy; {{ year }} {{ L.t('brand_name') }}. {{ L.t('footer_rights') }}
                     <span class="footer-sep">·</span>
                     <a routerLink="/privacy" class="footer-privacy">{{ L.t('privacy_link') }}</a>
+                    <span class="footer-sep">·</span>
+                    {{ L.t('footer_credit') }} <a [href]="'https://fastlabstudio.com/' + L.lang()" class="footer-privacy" target="_blank" rel="noopener">FastLab</a>
                 </p>
             </div>
         </div>

@@ -178,6 +178,7 @@ const en: Dictionary = {
   // Footer
   footer_tel: 'Tel:',
   footer_rights: 'All rights reserved.',
+  footer_credit: 'Website by',
   privacy_link: 'Privacy Policy',
   call_aria: 'Call Us',
   whatsapp_aria: 'WhatsApp Us',
@@ -376,6 +377,7 @@ const fr: Dictionary = {
   // Footer
   footer_tel: 'Tél. :',
   footer_rights: 'Tous droits réservés.',
+  footer_credit: 'Site réalisé par',
   privacy_link: 'Politique de confidentialité',
   call_aria: 'Appelez-nous',
   whatsapp_aria: 'Écrivez-nous sur WhatsApp',
@@ -570,6 +572,7 @@ const es: Dictionary = {
   // Footer
   footer_tel: 'Tel.:',
   footer_rights: 'Todos los derechos reservados.',
+  footer_credit: 'Sitio hecho por',
   privacy_link: 'Política de privacidad',
   call_aria: 'Llámanos',
   whatsapp_aria: 'Escríbenos por WhatsApp',
